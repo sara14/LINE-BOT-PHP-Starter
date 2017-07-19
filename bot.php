@@ -102,7 +102,7 @@ if (!is_null($events['events'])) {
 			echo $result . "\r\n";
 		}else{
 			// Get text sent
-			$text = $event['type'] . $event['data'];
+			$text = $event['type'] . $event['postback']['data'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			// Get userId
@@ -111,7 +111,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 				$messages = [
 					'type' => 'text',
-					'text' => $userId . ":" . $text
+					'text' => "Respond :" . $text
 				];
 
 			
