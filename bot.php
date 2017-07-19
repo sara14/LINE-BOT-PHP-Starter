@@ -24,11 +24,11 @@ if (!is_null($events['events'])) {
 			//	'text' => $userId . ":" . $text
 			//];
 			
-			$json = '{
-				"type": "text",
-				"text": "Hello, world"
-			}';
-			$messages = json_decode ($json);
+			$json = [
+				"type" => "text",
+				"text" => "Hello, world"
+			];
+			$messages = $json;
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
