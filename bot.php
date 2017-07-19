@@ -19,10 +19,33 @@ if (!is_null($events['events'])) {
 			$userId = $event['source']['userId'];
 
 			// Build message to reply back
-			$messages = [
-				'type' => 'text',
-				'text' => $userId . ":" . $text
-			];
+			//$messages = [
+			//	'type' => 'text',
+			//	'text' => $userId . ":" . $text
+			//];
+			
+			$messages = json_decode('{
+  "type": "template",
+  "altText": "this is a buttons template",
+  "template": {
+      "type": "buttons",
+      "thumbnailImageUrl": "http://dl.profile.line-cdn.net/0m0ed0c0367251df907a4f120f062b2235533d99806082",
+      "title": "Menu",
+      "text": "Please select",
+      "actions": [
+          {
+            "type": "postback",
+            "label": "Buy",
+            "data": "action=buy&itemid=123"
+          },
+          {
+            "type": "postback",
+            "label": "Add to cart",
+            "data": "action=add&itemid=123"
+          }
+      ]
+  }
+}');
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
