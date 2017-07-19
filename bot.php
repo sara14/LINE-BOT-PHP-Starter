@@ -102,7 +102,7 @@ if (!is_null($events['events'])) {
 			echo $result . "\r\n";
 		}else{
 			// Get text sent
-			$text = $event['type'];
+			$text = $event['type'] . $event['data'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			// Get userId
