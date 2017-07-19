@@ -56,22 +56,22 @@ if (!is_null($events['events'])) {
 							  'template' => [
 								  'type' => 'buttons',
 								  'thumbnailImageUrl' => 'https://blog.prepscholar.com/hs-fs/hubfs/main_register.jpg',
-								  'title' => 'แสดงเนื้อหา',
-								  'text' => 'ทดสอบการแสดงเนื้อหา',
+								  'title' => 'Menu',
+								  'text' => 'Please select',
 								  'actions' => [
 									  [
 										'type' => 'postback',
-										'label'=> 'ยอมรับ',
+										'label'=> 'Buy',
 										'data' => 'action=buy&itemid=123'
 									  ],
 									  [
 										'type' => 'postback',
-										'label' => 'ไม่ยอมรับ',
+										'label' => 'Add to cart',
 										'data' => 'action=add&itemid=123'
 									  ],
 									  [
 										'type' => 'uri',
-										'label' => 'ดูรายละเอียด',
+										'label' => 'View detail',
 										'uri' => 'http://php.fnlist.com/php/json_decode'
 									  ]
 								  ]
