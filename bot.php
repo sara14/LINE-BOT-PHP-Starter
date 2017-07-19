@@ -44,7 +44,7 @@ if (!is_null($events['events'])) {
 					  ]
 				  ]
 				];
-			}else if($text == "Test"){
+			}else if($text == "ทดสอบ"){
 				$messages = [
 					'type' => 'text',
 					'text' => $userId . ":" . $text
