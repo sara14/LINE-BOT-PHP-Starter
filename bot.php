@@ -56,7 +56,7 @@ if (!is_null($events['events'])) {
 							  'template' => [
 								  'type' => 'buttons',
 								  'thumbnailImageUrl' => 'https://blog.prepscholar.com/hs-fs/hubfs/main_register.jpg',
-								  'title' => 'Menu',
+								  'title' => 'ทดสอบเนื้อหา',
 								  'text' => 'Please select',
 								  'actions' => [
 									  [
