@@ -23,27 +23,34 @@ if (!is_null($events['events'])) {
 			//	'type' => 'text',
 			//	'text' => $userId . ":" . $text
 			//];
-			
-			$messages =[
-			  'type' => 'template',
-			  'altText' => 'this is a confirm template',
-			  'template' => [
-				  'type' => 'confirm',
-				  'text' => 'Are you sure?',
-				  'actions' => [
-					  [
-						'type' => 'message',
-						'label' => 'Yes',
-						'text' => 'yes'
-					  ],
-					  [
-						'type' => 'message',
-						'label' => 'No',
-						'text' => 'no'
+			if($text == "confirm"){
+				$messages =[
+				  'type' => 'template',
+				  'altText' => 'this is a confirm template',
+				  'template' => [
+					  'type' => 'confirm',
+					  'text' => 'Are you sure?',
+					  'actions' => [
+						  [
+							'type' => 'message',
+							'label' => 'Yes',
+							'text' => 'yes'
+						  ],
+						  [
+							'type' => 'message',
+							'label' => 'No',
+							'text' => 'no'
+						  ]
 					  ]
 				  ]
-			  ]
-			];
+				];
+			}else if($text == "test"){
+				$messages = [
+					'type' => 'text',
+					'text' => $userId . ":" . $text
+				];
+			}
+			
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
