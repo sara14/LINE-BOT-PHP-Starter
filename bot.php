@@ -24,11 +24,26 @@ if (!is_null($events['events'])) {
 			//	'text' => $userId . ":" . $text
 			//];
 			
-			$json = [
-				"type" => "text",
-				"text" => "Hello, world"
+			$messages =[
+			  'type' => 'template',
+			  'altText' => 'this is a confirm template',
+			  'template' => [
+				  'type' => 'confirm',
+				  'text' => 'Are you sure?',
+				  'actions' => [
+					  [
+						'type' => 'message',
+						'label' => 'Yes',
+						'text' => 'yes'
+					  ],
+					  [
+						'type' => 'message',
+						'label' => 'No',
+						'text' => 'no'
+					  ]
+				  ]
+			  ]
 			];
-			$messages = $json;
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
