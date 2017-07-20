@@ -72,7 +72,7 @@ if (!is_null($events['events'])) {
 								  [
 									  'type' => 'message',
 									  'text'=> 'hello',
-									  'area'= > [
+									  'area'=> [
 										  'x' => 520,
 										  'y' => 0,
 										  'width' => 520,
