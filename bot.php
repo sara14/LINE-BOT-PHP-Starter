@@ -45,14 +45,14 @@ if (!is_null($events['events'])) {
 				  ]
 				];
 			}else if($text == "ทดสอบ"){
-				$messages = [
-					'type' => 'text',
-					'text' => $userId . ":" . $text
-				];
+				//$messages = [
+				//	'type' => 'text',
+				//	'text' => $userId . ":" . $text
+				//];
 				
 				$messages = [
 							  'type' => 'imagemap',
-							  'baseUrl' => 'https://ibb.co/mckzKk/700',
+							  'baseUrl' => 'https://blog.prepscholar.com/hs-fs/hubfs/main_register.jpg',
 							  'altText' => 'this is an imagemap',
 							  'baseSize' => [
 								  'height' => 1040,
