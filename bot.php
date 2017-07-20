@@ -49,6 +49,38 @@ if (!is_null($events['events'])) {
 					'type' => 'text',
 					'text' => $userId . ":" . $text
 				];
+				
+				$messages = [
+							  'type' => 'imagemap',
+							  'baseUrl' => 'https://wdc.box.com/s/8b9324zgawbzxw5zzqhed4bo07r2i19y',
+							  'altText' => 'this is an imagemap',
+							  'baseSize' => {
+								  'height' => 1040,
+								  'width' => 1040
+							  },
+							  'actions' => [
+								  [
+									  'type' => 'uri',
+									  'linkUri': 'https://example.com/',
+									  'area' => [
+										  'x' => 0,
+										  'y' => 0,
+										  'width' => 520,
+										  'height' => 1040
+									  ]
+								  ],
+								  [
+									  'type' => 'message',
+									  'text'=> 'hello',
+									  'area'= > [
+										  'x' => 520,
+										  'y' => 0,
+										  'width' => 520,
+										  'height' => 1040
+									  ]
+								  ]
+							  ]
+							];
 			}else if($text == "Profile"){
 				$messages = [
 							  'type' => 'template',
