@@ -52,7 +52,7 @@ if (!is_null($events['events'])) {
 				
 				$messages = [
 							  'type' => 'imagemap',
-							  'baseUrl' => 'https://blog.prepscholar.com/hs-fs/hubfs/main_register.jpg',
+							  'baseUrl' => 'https://ibb.co/mckzKk',
 							  'altText' => 'this is an imagemap',
 							  'baseSize' => [
 								  'height' => 1040,
