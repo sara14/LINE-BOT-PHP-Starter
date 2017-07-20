@@ -54,10 +54,10 @@ if (!is_null($events['events'])) {
 							  'type' => 'imagemap',
 							  'baseUrl' => 'https://wdc.box.com/s/8b9324zgawbzxw5zzqhed4bo07r2i19y',
 							  'altText' => 'this is an imagemap',
-							  'baseSize' => {
+							  'baseSize' => [
 								  'height' => 1040,
 								  'width' => 1040
-							  },
+							  ],
 							  'actions' => [
 								  [
 									  'type' => 'uri',
@@ -71,7 +71,7 @@ if (!is_null($events['events'])) {
 								  ],
 								  [
 									  'type' => 'message',
-									  'text'=> 'hello',
+									  'text'=> 'Confirm',
 									  'area'=> [
 										  'x' => 520,
 										  'y' => 0,
