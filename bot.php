@@ -61,7 +61,7 @@ if (!is_null($events['events'])) {
 							  'actions' => [
 								  [
 									  'type' => 'uri',
-									  'linkUri': 'https://example.com/',
+									  'linkUri' => 'https://example.com/',
 									  'area' => [
 										  'x' => 0,
 										  'y' => 0,
@@ -71,8 +71,8 @@ if (!is_null($events['events'])) {
 								  ],
 								  [
 									  'type' => 'message',
-									  'text'=> 'Confirm',
-									  'area'=> [
+									  'text' => 'Confirm',
+									  'area' => [
 										  'x' => 520,
 										  'y' => 0,
 										  'width' => 520,
