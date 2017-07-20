@@ -52,7 +52,7 @@ if (!is_null($events['events'])) {
 				
 				$messages = [
 							  'type' => 'imagemap',
-							  'baseUrl' => 'https://image.ibb.co/gzyKKk/02.png',
+							  'baseUrl' => 'https://ibb.co/mckzKk/700',
 							  'altText' => 'this is an imagemap',
 							  'baseSize' => [
 								  'height' => 1040,
