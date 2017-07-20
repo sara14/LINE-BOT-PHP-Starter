@@ -55,8 +55,8 @@ if (!is_null($events['events'])) {
 							  'baseUrl' => 'https://blog.prepscholar.com/hs-fs/hubfs/main_register.jpg',
 							  'altText' => 'this is an imagemap',
 							  'baseSize' => [
-								  'height' => 1040,
-								  'width' => 1040
+								  'height' => 259,
+								  'width' => 390
 							  ],
 							  'actions' => [
 								  [
@@ -65,18 +65,18 @@ if (!is_null($events['events'])) {
 									  'area' => [
 										  'x' => 0,
 										  'y' => 0,
-										  'width' => 520,
-										  'height' => 1040
+										  'width' => 390,
+										  'height' => 259
 									  ]
 								  ],
 								  [
 									  'type' => 'message',
 									  'text' => 'Confirm',
 									  'area' => [
-										  'x' => 520,
+										  'x' => 160,
 										  'y' => 0,
-										  'width' => 520,
-										  'height' => 1040
+										  'width' => 390,
+										  'height' => 259
 									  ]
 								  ]
 							  ]
