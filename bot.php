@@ -52,7 +52,7 @@ if (!is_null($events['events'])) {
 				
 				$messages = [
 							  'type' => 'imagemap',
-							  'baseUrl' => 'https://wdc.box.com/s/8b9324zgawbzxw5zzqhed4bo07r2i19y',
+							  'baseUrl' => 'https://github.com/sara14/LINE-BOT-PHP-Starter/blob/master/1074242560431.jpg',
 							  'altText' => 'this is an imagemap',
 							  'baseSize' => [
 								  'height' => 1040,
