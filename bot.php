@@ -1,10 +1,10 @@
 <?php
-function isRegistered($userId) {
+function isRegistered($userId){
 	if($userId == 'U043c1dbc5506079b0b11d3f402aea555'){
 		echo "Hello world!";
 	}
 }
-function replyToUser($reToken,$message,$ac_token) 
+function replyToUser($reToken,$message,$ac_token){
 	
 	// Make a POST Request to Messaging API to reply to sender
 	$url = 'https://api.line.me/v2/bot/message/reply';
