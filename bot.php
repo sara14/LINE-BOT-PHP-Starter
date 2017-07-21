@@ -4,16 +4,16 @@ function isRegistered($userId) {
 		echo "Hello world!";
 	}
 }
-function replyToUser($replyToken,$messages) 
-	$access_token = 'Mq2pK5XVmM83DUMUh/55lt5oFCV2PzEpGV3qoG7tr/2B6MXhmOtjVwPXyfhgH27GrC8nysA0Po3KH+b+ImCfK9fg+xwPFTuLCauttOjLE47vlGSxItWqNJXLUS0xjkUnXXjblop8wg1wOocI6ezgQAdB04t89/1O/w1cDnyilFU=';
+function replyToUser($reToken,$message,$ac_token) 
+	
 	// Make a POST Request to Messaging API to reply to sender
 	$url = 'https://api.line.me/v2/bot/message/reply';
 	$data = [
-		'replyToken' => $replyToken,
-		'messages' => [$messages],
+		'replyToken' => $reToken,
+		'messages' => [$message],
 	];
 	$post = json_encode($data);
-	$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+	$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $ac_token);
 
 	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -27,7 +27,7 @@ function replyToUser($replyToken,$messages)
 	//return $result;
 }
 
-
+$access_token = 'Mq2pK5XVmM83DUMUh/55lt5oFCV2PzEpGV3qoG7tr/2B6MXhmOtjVwPXyfhgH27GrC8nysA0Po3KH+b+ImCfK9fg+xwPFTuLCauttOjLE47vlGSxItWqNJXLUS0xjkUnXXjblop8wg1wOocI6ezgQAdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
 $content = file_get_contents('php://input');
