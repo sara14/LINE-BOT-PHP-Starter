@@ -23,6 +23,7 @@ function reply($replyToken,$messages)
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 	$result = curl_exec($ch);
 	curl_close($ch);
+	echo $result . "\r\n";
 	return $result;
 }
 
@@ -161,7 +162,7 @@ if (!is_null($events['events'])) {
 			//$result = curl_exec($ch);
 			//curl_close($ch);
 
-			echo $respond . "\r\n";
+			//echo $respond . "\r\n";
 		}else{
 			// Get type sent
 			$text = $event['type'] . $event['postback']['data'];
