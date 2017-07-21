@@ -4,7 +4,7 @@ function isRegistered($userId) {
 		echo "Hello world!";
 	}
 }
-function reply($replyToken,$messages) 
+function replyToUser($replyToken,$messages) 
 	$access_token = 'Mq2pK5XVmM83DUMUh/55lt5oFCV2PzEpGV3qoG7tr/2B6MXhmOtjVwPXyfhgH27GrC8nysA0Po3KH+b+ImCfK9fg+xwPFTuLCauttOjLE47vlGSxItWqNJXLUS0xjkUnXXjblop8wg1wOocI6ezgQAdB04t89/1O/w1cDnyilFU=';
 	// Make a POST Request to Messaging API to reply to sender
 	$url = 'https://api.line.me/v2/bot/message/reply';
@@ -24,7 +24,7 @@ function reply($replyToken,$messages)
 	$result = curl_exec($ch);
 	curl_close($ch);
 	echo $result . "\r\n";
-	return $result;
+	//return $result;
 }
 
 
@@ -142,7 +142,7 @@ if (!is_null($events['events'])) {
 				
 			}
 			
-			$respond = reply($replyToken,$messages);
+			replyToUser($replyToken,$messages);
 
 			// Make a POST Request to Messaging API to reply to sender
 			//$url = 'https://api.line.me/v2/bot/message/reply';
