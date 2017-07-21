@@ -142,7 +142,7 @@ if (!is_null($events['events'])) {
 				
 			}
 			
-			replyToUser($replyToken,$messages);
+			replyToUser($replyToken,$messages,$access_token);
 
 			// Make a POST Request to Messaging API to reply to sender
 			//$url = 'https://api.line.me/v2/bot/message/reply';
@@ -178,7 +178,7 @@ if (!is_null($events['events'])) {
 				];
 
 			
-			$respond = reply($replyToken,$messages);
+			//$respond = reply($replyToken,$messages);
 			
 
 			// Make a POST Request to Messaging API to reply to sender
@@ -199,7 +199,7 @@ if (!is_null($events['events'])) {
 			//$result = curl_exec($ch);
 			//curl_close($ch);
 
-			echo $respond . "\r\n";
+			//echo $respond . "\r\n";
 		}
 	}
 }
