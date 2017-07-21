@@ -80,8 +80,8 @@ if (!is_null($events['events'])) {
 							  'baseUrl' => 'https://github.com/line/line-bot-sdk-go/tree/master/examples/kitchensink/static/rich',
 							  'altText' => 'this is an imagemap',
 							  'baseSize' => [
-								  'height' => 1040,
-								  'width' => 1040
+								  'height' => 700,
+								  'width' => 700
 							  ],
 							  'actions' => [
 								  [
@@ -90,18 +90,18 @@ if (!is_null($events['events'])) {
 									  'area' => [
 										  'x' => 0,
 										  'y' => 0,
-										  'width' => 1040,
-										  'height' => 1040
+										  'width' => 700,
+										  'height' => 700
 									  ]
 								  ],
 								  [
 									  'type' => 'message',
 									  'text' => 'Confirm',
 									  'area' => [
-										  'x' => 520,
+										  'x' => 350,
 										  'y' => 0,
-										  'width' => 1040,
-										  'height' => 1040
+										  'width' => 700,
+										  'height' => 700
 									  ]
 								  ]
 							  ]
