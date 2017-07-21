@@ -178,7 +178,7 @@ if (!is_null($events['events'])) {
 echo "OK";
 
 function isRegistered($userId) {
-	if($userId = 'U043c1dbc5506079b0b11d3f402aea555'){
+	if($userId == 'U043c1dbc5506079b0b11d3f402aea555'){
 		echo "Hello world!";
 	}
 }
