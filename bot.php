@@ -1,5 +1,32 @@
 <?php
-$access_token = 'Mq2pK5XVmM83DUMUh/55lt5oFCV2PzEpGV3qoG7tr/2B6MXhmOtjVwPXyfhgH27GrC8nysA0Po3KH+b+ImCfK9fg+xwPFTuLCauttOjLE47vlGSxItWqNJXLUS0xjkUnXXjblop8wg1wOocI6ezgQAdB04t89/1O/w1cDnyilFU=';
+function isRegistered($userId) {
+	if($userId == 'U043c1dbc5506079b0b11d3f402aea555'){
+		echo "Hello world!";
+	}
+}
+function reply($replyToken,$messages) 
+	$access_token = 'Mq2pK5XVmM83DUMUh/55lt5oFCV2PzEpGV3qoG7tr/2B6MXhmOtjVwPXyfhgH27GrC8nysA0Po3KH+b+ImCfK9fg+xwPFTuLCauttOjLE47vlGSxItWqNJXLUS0xjkUnXXjblop8wg1wOocI6ezgQAdB04t89/1O/w1cDnyilFU=';
+	// Make a POST Request to Messaging API to reply to sender
+	$url = 'https://api.line.me/v2/bot/message/reply';
+	$data = [
+		'replyToken' => $replyToken,
+		'messages' => [$messages],
+	];
+	$post = json_encode($data);
+	$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+	$ch = curl_init($url);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	$result = curl_exec($ch);
+	curl_close($ch);
+	return $result;
+}
+
+
 
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -114,27 +141,27 @@ if (!is_null($events['events'])) {
 				
 			}
 			
-			//$respond = reply($replyToken,$messages);
+			$respond = reply($replyToken,$messages);
 
 			// Make a POST Request to Messaging API to reply to sender
-			$url = 'https://api.line.me/v2/bot/message/reply';
-			$data = [
-				'replyToken' => $replyToken,
-				'messages' => [$messages],
-			];
-			$post = json_encode($data);
-			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+			//$url = 'https://api.line.me/v2/bot/message/reply';
+			//$data = [
+			//	'replyToken' => $replyToken,
+			//	'messages' => [$messages],
+			//];
+			//$post = json_encode($data);
+			//$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-			$ch = curl_init($url);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			$result = curl_exec($ch);
-			curl_close($ch);
+			//$ch = curl_init($url);
+			//curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			//curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			//curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			//curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			//curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			//$result = curl_exec($ch);
+			//curl_close($ch);
 
-			echo $result . "\r\n";
+			echo $respond . "\r\n";
 		}else{
 			// Get type sent
 			$text = $event['type'] . $event['postback']['data'];
@@ -177,28 +204,3 @@ if (!is_null($events['events'])) {
 }
 echo "OK";
 
-function isRegistered($userId) {
-	if($userId == 'U043c1dbc5506079b0b11d3f402aea555'){
-		echo "Hello world!";
-	}
-}
-function reply($replyToken,$messages) {
-	// Make a POST Request to Messaging API to reply to sender
-	$url = 'https://api.line.me/v2/bot/message/reply';
-	$data = [
-		'replyToken' => $replyToken,
-		'messages' => [$messages],
-	];
-	$post = json_encode($data);
-	$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-
-	$ch = curl_init($url);
-	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	$result = curl_exec($ch);
-	curl_close($ch);
-	return $result;
-}
