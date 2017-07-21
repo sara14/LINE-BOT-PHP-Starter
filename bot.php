@@ -77,7 +77,7 @@ if (!is_null($events['events'])) {
 			}else if($text == "ทดสอบ"){
 				$messages = [
 							  'type' => 'imagemap',
-							  'baseUrl' => 'https://blog.prepscholar.com/hs-fs/hubfs/main_register.jpg',
+							  'baseUrl' => 'https://github.com/sara14/LINE-BOT-PHP-Starter/tree/master/image/map1',
 							  'altText' => 'this is an imagemap',
 							  'baseSize' => [
 								  'height' => 1040,
