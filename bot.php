@@ -77,7 +77,7 @@ if (!is_null($events['events'])) {
 			}else if($text == "ทดสอบ"){
 				$messages = [
 							  'type' => 'imagemap',
-							  'baseUrl' => 'https://github.com/sara14/LINE-BOT-PHP-Starter/tree/master/image/map1/1040',
+							  'baseUrl' => 'https://github.com/line/line-bot-sdk-go/tree/master/examples/kitchensink/static/rich',
 							  'altText' => 'this is an imagemap',
 							  'baseSize' => [
 								  'height' => 1040,
