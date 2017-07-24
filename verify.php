@@ -15,6 +15,6 @@ curl_close($ch);
 echo $result;
 test();
 function test(){
-	preg_match('/(baz)(foo)(bar)/', 'foobarbaz', $matches, PREG_OFFSET_CAPTURE);
+	preg_match('/(ประกัน)(ข้อมูล)(สอบถาม)/', 'สอบถามข้อมูลแผนประกัน', $matches, PREG_OFFSET_CAPTURE);
 	print_r($matches);
 }
