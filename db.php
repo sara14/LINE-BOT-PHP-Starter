@@ -7,7 +7,7 @@
 		$oStmt->execute();
 		$oResult = $oStmt->fetchAll();
 		foreach ($oResult as $aRow) {
-			print_r($aRow['data']);
+			print_r($aRow['iquery']);
 		}
 	} catch(PDOException $e) {
 		echo 'ERROR: ' . $e->getMessage();
