@@ -9,6 +9,7 @@
 		foreach ($oResult as $aRow) {
 			print_r($aRow['iquery']);
 		}
+		$oConn->close();
 	} catch(PDOException $e) {
 		echo 'ERROR: ' . $e->getMessage();
 	}
