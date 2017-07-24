@@ -15,6 +15,6 @@ curl_close($ch);
 echo $result;
 test();
 function test(){
-	$matches = ereg('สอบถาม*ข้อมูล', 'สอบถามข้อมูลแผนประกัน');
-	print_r($matches);
+	$matches = ereg('ข้อมูล*สอบถาม', 'สอบถามข้อมูลแผนประกัน');
+	print_r('55' . $matches);
 }
