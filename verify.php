@@ -15,5 +15,6 @@ curl_close($ch);
 echo $result;
 test();
 function test(){
-	echo 'test';
+	preg_match('/(foo)(bar)(baz)/', 'foobarbaz', $matches, PREG_OFFSET_CAPTURE);
+	print_r($matches);
 }
