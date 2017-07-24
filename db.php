@@ -3,7 +3,7 @@
 	try {
 		$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
 		$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$oStmt = $oConn->prepare('SELECT query FROM `query_table`');
+		$oStmt = $oConn->prepare('SELECT iquery FROM heroku_c567de8b5a4ca4f.query_table');
 		$oStmt->execute();
 		$oResult = $oStmt->fetchAll();
 		foreach ($oResult as $aRow) {
