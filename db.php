@@ -23,9 +23,8 @@
 		$oStmt->execute();
 		$oResult = $oStmt->fetchAll();
 		foreach ($oResult as $aRow) {
-			if($userId == $aRow['userid']){
-				$result=true;
-			}
+			$result=true;
+			echo $aRow['userid'];
 		}
 		$oConn=null;
 		return $result;
