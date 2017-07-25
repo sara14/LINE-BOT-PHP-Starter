@@ -1,6 +1,7 @@
 <?php
 require_once 'config.php';
 function isRegistered($userId){
+	require_once 'config.php';
 	try {
 		$result = false;
 		$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
