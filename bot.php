@@ -155,7 +155,7 @@ if (!is_null($events['events'])) {
 							$objConnect = mysql_connect($sHost,$sUsername,$sPassword) or die("Error Connect to Database");
 							$objDB = mysql_select_db($sDb);
 							mysql_query("SET NAMES TIS620");
-							$strSQL = 'INSERT INTO heroku_c567de8b5a4ca4f.query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())';
+							$strSQL = 'INSERT INTO query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())';
 							mysql_query($strSQL);
 							mysql_close($objConnect);
 							
