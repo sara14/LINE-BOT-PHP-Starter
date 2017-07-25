@@ -1,6 +1,7 @@
 <?php
-	require_once 'config.php';
+	
 	function isRegstered($usid){
+		require_once 'config.php';
 		try {
 			$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
 			$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
