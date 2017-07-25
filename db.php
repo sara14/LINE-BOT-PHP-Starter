@@ -19,12 +19,12 @@
 		$result = false;
 		$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
 		$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$oStmt = $oConn->prepare('SELECT userid FROM heroku_c567de8b5a4ca4f.user_list WHERE userid="' . $userId . '"');
+		$oStmt = $oConn->prepare('SELECT * FROM heroku_c567de8b5a4ca4f.user_list WHERE userid="' . $userId . '"');
 		$oStmt->execute();
 		$oResult = $oStmt->fetchAll();
 		foreach ($oResult as $aRow) {
 			$result=true;
-			echo $aRow['userid'];
+			echo $aRow[0];
 		}
 		$oConn=null;
 		return $result;
