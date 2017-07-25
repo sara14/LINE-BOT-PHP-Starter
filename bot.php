@@ -12,7 +12,7 @@ function replyToUser($reToken,$message,$ac_token){
 	$url = 'https://api.line.me/v2/bot/message/reply';
 	$data = [
 		'replyToken' => $reToken,
-		'messages' => [$message],
+		'messages' => [$message]
 	];
 	$post = json_encode($data);
 	$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $ac_token);
@@ -47,7 +47,7 @@ if (!is_null($events['events'])) {
 				$replyToken = $event['replyToken'];
 				// Get userId
 				$userId = $event['source']['userId'];
-				//if(isRegistered($userId)==true){
+				if(isRegistered($userId)==true){
 				
 					if($text == "Confirm"){
 						$messages =[
@@ -142,14 +142,13 @@ if (!is_null($events['events'])) {
 					}
 					
 					replyToUser($replyToken,$messages,$access_token);
-				//}else{
-				//	$replyToken = $event['replyToken'];
-				//	$messages = [
-				//					'type' => 'text',
-				//					'text' => 'not register';
-				//				];
-				//	replyToUser($replyToken,$messages,$access_token);
-				//}
+				}else{
+					$messages = [
+									'type' => 'text',
+									'text' => 'not register'
+								];
+					replyToUser($replyToken,$messages,$access_token);
+				}
 			}else{
 				// Get type sent
 				$text = $event['type'] . $event['postback']['data'];
