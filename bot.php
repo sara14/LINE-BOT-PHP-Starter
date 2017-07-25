@@ -15,6 +15,7 @@ function isRegistered($userId){
 			}
 		}
 		$oConn=null;
+		return $result;
 	} catch(PDOException $e) {
 		echo 'ERROR: ' . $e->getMessage();
 		$result=false;
