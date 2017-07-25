@@ -154,7 +154,9 @@ if (!is_null($events['events'])) {
 							
 							$objConnect = mysql_connect($sHost,$sUsername,$sPassword) or die("Error Connect to Database");
 							$objDB = mysql_select_db($sDb);
-							mysql_query("SET NAMES TIS620");
+							mysql_query("SET character_set_results=tis620");
+							mysql_query("SET character_set_client=tis620");
+							mysql_query("SET character_set_connection=tis620");
 							$strSQL = 'INSERT INTO query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())';
 							mysql_query($strSQL);
 							mysql_close($objConnect);
