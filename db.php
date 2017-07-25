@@ -16,14 +16,15 @@
 		mysql_query("SET character_set_results=tis620");
 		mysql_query("SET character_set_client=tis620");
 		mysql_query("SET character_set_connection=tis620");
-		$strSQL = 'INSERT INTO query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())';
+		$strSQL = 'INSERT INTO query_table VALUES("X","ทดสอบ","666",Now())';
 		mysql_query($strSQL);
 		mysql_close($objConnect);
 	//} catch(PDOException $e) {
 	//	echo 'ERROR: ' . $e->getMessage();
 	//}
+	echo 'complete';
 	
 	} catch(Exception $e) {
-		echo 'ERROR: ' . $e->getMessage();
+		echo 'ERROR: ';
 	}
 ?> 
