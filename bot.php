@@ -152,11 +152,18 @@ if (!is_null($events['events'])) {
 									];
 							replyToUser($replyToken,$messages,$access_token);
 							
-							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
-							$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-							$oStmt = $oConn->prepare('INSERT INTO heroku_c567de8b5a4ca4f.query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())');
-							$oStmt->execute();
-							$oConn->close();
+							$objConnect = mysql_connect($sHost,$sUsername,$sPassword) or die("Error Connect to Database");
+							$objDB = mysql_select_db($sDb);
+							mysql_query("SET NAMES TIS620");
+							$strSQL = 'INSERT INTO heroku_c567de8b5a4ca4f.query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())';
+							mysql_query($strSQL);
+							mysql_close($objConnect);
+							
+							//$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
+							//$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							//$oStmt = $oConn->prepare('INSERT INTO heroku_c567de8b5a4ca4f.query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())');
+							//$oStmt->execute();
+							//$oConn->close();
 							
 						} catch(PDOException $e) {
 							echo 'ERROR: ' . $e->getMessage();
