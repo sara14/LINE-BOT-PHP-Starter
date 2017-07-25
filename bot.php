@@ -159,7 +159,7 @@ if (!is_null($events['events'])) {
 							echo 'ERROR: ' . $e->getMessage();
 							$messages = [
 										'type' => 'text',
-										'text' => $e->getMessage();
+										'text' => $e->getMessage()
 									];
 						}
 						
