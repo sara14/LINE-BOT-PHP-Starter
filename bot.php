@@ -144,11 +144,21 @@ if (!is_null($events['events'])) {
 					
 					replyToUser($replyToken,$messages,$access_token);
 				}else{
-					if (strpos($text, 'ลงทะเบียน') !== false) {
-						$messages = [
+					if (strpos($text, 'ลงทะเบียน-') !== false) {
+						try {
+							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
+							$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							$oStmt = $oConn->prepare('INSERT INTO heroku_c567de8b5a4ca4f.query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())');
+							$oStmt->execute();
+							$oConn->close();
+							$messages = [
 										'type' => 'text',
 										'text' => 'คำร้องขอลงทะเบียนของคุณถูกส่งไปที่ผู้ดูแลระบบแล้ว ซึ่งอาจจะใช้เวลาสักพักเพื่อรอการอนุมัติ ทันทีที่คำขอของคุณได้รับการอนุมัติผมจะแจ้งให้ทราบทันทีครับ'
 									];
+						} catch(PDOException $e) {
+							echo 'ERROR: ' . $e->getMessage();
+						}
+						
 					}else{
 						$messages = [
 										'type' => 'text',
