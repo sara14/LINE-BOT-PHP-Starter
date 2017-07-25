@@ -144,13 +144,14 @@ if (!is_null($events['events'])) {
 					replyToUser($replyToken,$messages,$access_token);
 				}else{
 					$messages = [
+					{
 									'type' => 'text',
 									'text' => 'คุณยังไม่ได้ลงทะเบียน จึงยังไม่สามารถสอบถามข้อมูลได้ เพื่อการตอบคำถามที่ถูกต้องกรุณาลงทะเบียนก่อนครับ'
-								],
-								[
+					},
+					{
 									'type' => 'text',
 									'text' => 'คุณยังไม่ได้ลงทะเบียน จึงยังไม่สามารถสอบถามข้อมูลได้ เพื่อการตอบคำถามที่ถูกต้องกรุณาลงทะเบียนก่อนครับ'
-								];
+					}];
 					replyToUser($replyToken,$messages,$access_token);
 				}
 			}else{
