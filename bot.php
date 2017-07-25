@@ -157,6 +157,10 @@ if (!is_null($events['events'])) {
 									];
 						} catch(PDOException $e) {
 							echo 'ERROR: ' . $e->getMessage();
+							$messages = [
+										'type' => 'text',
+										'text' => $e->getMessage();
+									];
 						}
 						
 					}else{
