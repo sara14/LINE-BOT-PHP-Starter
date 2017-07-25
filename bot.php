@@ -155,12 +155,14 @@ if (!is_null($events['events'])) {
 										'type' => 'text',
 										'text' => 'คำร้องขอลงทะเบียนของคุณถูกส่งไปที่ผู้ดูแลระบบแล้ว ซึ่งอาจจะใช้เวลาสักพักเพื่อรอการอนุมัติ ทันทีที่คำขอของคุณได้รับการอนุมัติผมจะแจ้งให้ทราบทันทีครับ'
 									];
+							replyToUser($replyToken,$messages,$access_token);
 						} catch(PDOException $e) {
 							echo 'ERROR: ' . $e->getMessage();
 							$messages = [
 										'type' => 'text',
-										'text' => $e->getMessage()
+										'text' => 'error'
 									];
+							replyToUser($replyToken,$messages,$access_token);
 						}
 						
 					}else{
@@ -168,8 +170,9 @@ if (!is_null($events['events'])) {
 										'type' => 'text',
 										'text' => 'คุณยังไม่ได้ลงทะเบียน จึงยังไม่สามารถสอบถามข้อมูลได้ เพื่อการตอบคำถามที่ถูกต้องกรุณาลงทะเบียนก่อน โดยพิมพ์ข้อความ "ลงทะเบียน-รหัสพนักงาน" ส่งมาที่ผมเพื่อลงทะเบียนครับ ตัวอย่างเช่น ลงทะเบียน-7100000'
 									];
+						replyToUser($replyToken,$messages,$access_token);
 					}
-					replyToUser($replyToken,$messages,$access_token);
+					
 				}
 			}else{
 				// Get type sent
