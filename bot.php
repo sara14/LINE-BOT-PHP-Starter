@@ -1,9 +1,3 @@
-<html>
-<head>
-<title>Line Bot Service</title>
-<meta http-equiv=Content-Type content="text/html; charset=tis-620">
-</head>
-<body>
 <?php
 require_once 'config.php';
 function isRegistered($userId){
@@ -203,6 +197,3 @@ if (!is_null($events['events'])) {
 	
 }
 echo "OK";
-
-</body>
-</html>
