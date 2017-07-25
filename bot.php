@@ -1,3 +1,9 @@
+<html>
+<head>
+<title>Line Bot Service</title>
+<meta http-equiv=Content-Type content="text/html; charset=tis-620">
+</head>
+<body>
 <?php
 require_once 'config.php';
 function isRegistered($userId){
@@ -146,16 +152,18 @@ if (!is_null($events['events'])) {
 				}else{
 					if (strpos($text, 'ลงทะเบียน-') !== false) {
 						try {
-							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
-							$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-							$oStmt = $oConn->prepare('INSERT INTO heroku_c567de8b5a4ca4f.query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())');
-							$oStmt->execute();
-							$oConn->close();
 							$messages = [
 										'type' => 'text',
 										'text' => 'คำร้องขอลงทะเบียนของคุณถูกส่งไปที่ผู้ดูแลระบบแล้ว ซึ่งอาจจะใช้เวลาสักพักเพื่อรอการอนุมัติ ทันทีที่คำขอของคุณได้รับการอนุมัติผมจะแจ้งให้ทราบทันทีครับ'
 									];
 							replyToUser($replyToken,$messages,$access_token);
+							
+							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
+							$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							$oStmt = $oConn->prepare('INSERT INTO heroku_c567de8b5a4ca4f.query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())');
+							$oStmt->execute();
+							$oConn->close();
+							
 						} catch(PDOException $e) {
 							echo 'ERROR: ' . $e->getMessage();
 							$messages = [
@@ -196,3 +204,5 @@ if (!is_null($events['events'])) {
 }
 echo "OK";
 
+</body>
+</html>
