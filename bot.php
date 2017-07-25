@@ -16,7 +16,7 @@ function isRegistered($userId){
 		}
 		$oConn=null;
 		return $result;
-	} catch(PDOException $e) {
+		} catch(PDOException $e) {
 		echo 'ERROR: ' . $e->getMessage();
 		$result=false;
 	}
@@ -64,7 +64,7 @@ if (!is_null($events['events'])) {
 				$replyToken = $event['replyToken'];
 				// Get userId
 				$userId = $event['source']['userId'];
-				if(isRegistered($userId)==true){
+				if(isRegistered($userId)==1){
 				
 					if($text == "Confirm"){
 						$messages =[
