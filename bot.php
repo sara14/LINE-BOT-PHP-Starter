@@ -146,26 +146,16 @@ if (!is_null($events['events'])) {
 				}else{
 					if (strpos($text, 'ลงทะเบียน-') !== false) {
 						try {
+							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
+							$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							$oStmt = $oConn->prepare('INSERT INTO heroku_c567de8b5a4ca4f.query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())');
+							$oStmt->execute();
+							$oConn=null;
 							$messages = [
 										'type' => 'text',
 										'text' => 'คำร้องขอลงทะเบียนของคุณถูกส่งไปที่ผู้ดูแลระบบแล้ว ซึ่งอาจจะใช้เวลาสักพักเพื่อรอการอนุมัติ ทันทีที่คำขอของคุณได้รับการอนุมัติผมจะแจ้งให้ทราบทันทีครับ'
 									];
 							replyToUser($replyToken,$messages,$access_token);
-							
-							$objConnect = mysql_connect($sHost,$sUsername,$sPassword) or die("Error Connect to Database");
-							$objDB = mysql_select_db($sDb);
-							mysql_query("SET character_set_results=tis620");
-							mysql_query("SET character_set_client=tis620");
-							mysql_query("SET character_set_connection=tis620");
-							$strSQL = 'INSERT INTO query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())';
-							mysql_query($strSQL);
-							mysql_close($objConnect);
-							
-							//$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
-							//$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-							//$oStmt = $oConn->prepare('INSERT INTO heroku_c567de8b5a4ca4f.query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())');
-							//$oStmt->execute();
-							//$oConn->close();
 							
 						} catch(PDOException $e) {
 							echo 'ERROR: ' . $e->getMessage();
