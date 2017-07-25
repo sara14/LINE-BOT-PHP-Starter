@@ -143,7 +143,7 @@ if (!is_null($events['events'])) {
 					
 					replyToUser($replyToken,$messages,$access_token);
 				}else{
-					$messages = {
+					$messages = [
 									[
 										'type' => 'text',
 										'text' => 'คุณยังไม่ได้ลงทะเบียน จึงยังไม่สามารถสอบถามข้อมูลได้ เพื่อการตอบคำถามที่ถูกต้องกรุณาลงทะเบียนก่อนครับ'
@@ -152,7 +152,7 @@ if (!is_null($events['events'])) {
 									//	'type' => 'text',
 									//	'text' => 'คุณสามารถลงทะเบียนได้โดยพิมพ์ "ลงทะเบียน-รหัสพนักงาน" แล้วส่งข้อมความมาที่ผม เพื่อลงทะเบียนครับ'
 									//]
-					};
+					];
 					replyToUser($replyToken,$messages,$access_token);
 				}
 			}else{
