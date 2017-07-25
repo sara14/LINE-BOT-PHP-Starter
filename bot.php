@@ -146,7 +146,7 @@ if (!is_null($events['events'])) {
 				}else{
 					if (strpos($text, 'ลงทะเบียน-') !== false) {
 						try {
-							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
+							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
 							$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 							$oStmt = $oConn->prepare('INSERT INTO heroku_c567de8b5a4ca4f.query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())');
 							$oStmt->execute();
