@@ -1,7 +1,7 @@
 <?php
 function isRegistered($userId){
 	$result = false;
-	if($userId == 'U043c1dbc5506079b0b11d3f402aea555'){
+	if($userId == 'U043c1dbc5506079b0b11d3f402aea55'){
 		$result=true;
 	}
 	return $result;
