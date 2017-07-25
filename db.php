@@ -1,6 +1,5 @@
 <?php
 	require_once 'config.php';
-	echo isRegstered('U043c1dbc5506079b0b11d3f402aea555');
 	function isRegstered($usid){
 		try {
 			$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
@@ -16,4 +15,6 @@
 			echo 'ERROR: ' . $e->getMessage();
 		}
 	}
+	echo "" . isRegstered('U043c1dbc5506079b0b11d3f402aea555');
+	
 ?> 
