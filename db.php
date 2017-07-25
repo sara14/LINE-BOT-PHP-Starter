@@ -24,7 +24,7 @@
 		$oResult = $oStmt->fetchAll();
 		foreach ($oResult as $aRow) {
 			$result=true;
-			echo $aRow[0];
+			//echo $aRow[0];
 		}
 		$oConn=null;
 		return $result;
