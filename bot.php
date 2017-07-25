@@ -2,9 +2,24 @@
 require_once 'config.php';
 function isRegistered($userId){
 	$result = false;
-	if($userId == 'U043c1dbc5506079b0b11d3f402aea55'){
-		$result=true;
+	
+	try {
+		$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
+		$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$oStmt = $oConn->prepare('SELECT userid FROM heroku_c567de8b5a4ca4f.user_list');
+		$oStmt->execute();
+		$oResult = $oStmt->fetchAll();
+		foreach ($oResult as $aRow) {
+			if($userId == $aRow['userid']){
+				$result=true;
+			}
+		}
+		$oConn=null;
+	} catch(PDOException $e) {
+		echo 'ERROR: ' . $e->getMessage();
+		$result=false;
 	}
+	
 	return $result;
 }
 function replyToUser($reToken,$message,$ac_token){
