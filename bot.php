@@ -54,7 +54,7 @@ $content = file_get_contents('php://input');
 $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
-	
+		$rrs =  print_r($array);
 		// Loop through each event
 		foreach ($events['events'] as $event) {
 			// Reply only when message sent is in 'text' format
@@ -92,7 +92,7 @@ if (!is_null($events['events'])) {
 					}else if($text == "test"){
 						$messages = [
 							'type' => 'text',
-							'text' => $userId . ":" . $text
+							'text' => $userId . ":" . $rrs
 						];
 						
 					}else if($text == "ทดสอบ"){
