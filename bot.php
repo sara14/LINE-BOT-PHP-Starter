@@ -65,7 +65,7 @@ if (!is_null($events['events'])) {
 				$replyToken = $event['replyToken'];
 				// Get userId
 				$userId = $event['source']['userId'];
-				$rrs = json_encode($event['events']);
+				$rrs = json_encode($event['source']);
 				if(isRegistered($userId)==1){
 				
 					if($text == "Confirm"){
