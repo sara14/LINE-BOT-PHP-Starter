@@ -1,7 +1,7 @@
 <?php
-
+require 'config.php';
 function isRegistered($userId){
-	require_once 'config.php';
+	//require_once 'config.php';
 	try {
 		$result = false;
 		$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
@@ -161,7 +161,7 @@ if (!is_null($events['events'])) {
 					replyToUser($replyToken,$messages,$access_token);
 				}else{
 					if (strpos($text, 'ลงทะเบียน-') !== false) {
-						require_once 'config.php';
+						
 						try {
 							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
 							$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
