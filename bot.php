@@ -175,10 +175,10 @@ if (!is_null($events['events'])) {
 							replyToUser($replyToken,$messages,$access_token);
 							
 						} catch(PDOException $e) {
-							echo 'ERROR: ' . $e->getMessage();
+							$err = $e->getMessage();
 							$messages = [
 										'type' => 'text',
-										'text' => 'error'
+										'text' => 'error' . $err
 									];
 							replyToUser($replyToken,$messages,$access_token);
 						}
