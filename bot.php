@@ -8,7 +8,7 @@ function isRegistered($userId){
 	//require_once 'config.php';
 	try {
 		$result = false;
-		$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
+		$oConn = new PDO('mysql:host='. $GLOBALS['sHost'] .';dbname='. $GLOBALS['sDb'] .';charset=utf8', $GLOBALS['sUsername'], $GLOBALS['sPassword']);
 		$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$oStmt = $oConn->prepare('SELECT userid FROM heroku_c567de8b5a4ca4f.user_list WHERE userid="' . $userId . '"');
 		$oStmt->execute();
