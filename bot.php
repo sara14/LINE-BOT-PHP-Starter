@@ -96,6 +96,11 @@ if (!is_null($events['events'])) {
 							'text' => $userId . ":" . $rrs
 						];
 						
+					}else if($text == "สวัสดี"){
+						$messages = [
+							'type' => 'text',
+							'text' => 'สวัสดีครับ  ^^'
+						];
 					}else if($text == "ทดสอบ"){
 						$messages = [
 									  'type' => 'imagemap',
