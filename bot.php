@@ -163,6 +163,11 @@ if (!is_null($events['events'])) {
 									  ]
 									];
 						
+					}else{
+						$messages = [
+							'type' => 'text',
+							'text' => 'ตอนนี้ผมกำลังเริ่มเรียนรู้เลยไม่สามารถตอบคำถามนี้ได้ ลองคำถามอื่นๆดูซิครับ'
+						];
 					}
 					
 					replyToUser($replyToken,$messages,$access_token);
