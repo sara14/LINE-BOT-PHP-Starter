@@ -220,7 +220,7 @@ if (!is_null($events['events'])) {
 						}
 						
 					}else{
-						if(isPendingRegister($userId)==1){
+						if(isPendingRegister($userId)==True){
 							$messages = [
 											'type' => 'text',
 											'text' => 'คุณได้ส่งคำร้องลงทะเบียนไปแล้ว แต่ยังไม่ได้รับการอนุมัติ อาจใช้เวลาสักครู่เพื่อรอการตรวจสอบครับ'
