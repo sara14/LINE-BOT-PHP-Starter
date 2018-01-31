@@ -24,6 +24,29 @@ function isRegistered($userId){
 	
 	return $result;
 }
+function isPendingRegister($userId){
+	
+	try {
+		$result = false;
+		$oConn = new PDO('mysql:host='. $GLOBALS['sHost'] .';dbname='. $GLOBALS['sDb'] .';charset=utf8', $GLOBALS['sUsername'], $GLOBALS['sPassword']);
+		$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$oStmt = $oConn->prepare('SELECT * FROM heroku_c567de8b5a4ca4f.query_table WHERE Requester ="' . $userId . '"');
+		$oStmt->execute();
+		$oResult = $oStmt->fetchAll();
+		foreach ($oResult as $aRow) {
+			if($userId == $aRow['userid']){
+				$result=true;
+			}
+		}
+		$oConn=null;
+		return $result;
+		} catch(PDOException $e) {
+			echo 'ERROR: ' . $e->getMessage();
+			$result=false;
+		}
+	
+	return $result;
+}
 function replyToUser($reToken,$message,$ac_token){
 	
 	// Make a POST Request to Messaging API to reply to sender
@@ -197,10 +220,17 @@ if (!is_null($events['events'])) {
 						}
 						
 					}else{
-						$messages = [
-										'type' => 'text',
-										'text' => 'คุณยังไม่ได้ลงทะเบียน จึงยังไม่สามารถสอบถามข้อมูลได้ เพื่อการตอบคำถามที่ถูกต้องกรุณาลงทะเบียนก่อน โดยพิมพ์ข้อความ "ลงทะเบียน-รหัสพนักงาน" ส่งมาที่ผมเพื่อลงทะเบียนครับ ตัวอย่างเช่น ลงทะเบียน-7100000'
-									];
+						if(isPendingRegister($userId)==1){
+							$messages = [
+											'type' => 'text',
+											'text' => 'คุณได้ส่งคำร้องลงทะเบียนไปแล้ว แต่ยังไม่ได้รับการอนุมัติ อาจใช้เวลาสักครู่เพื่อรอการตรวจสอบครับ'
+										];
+						}else{
+							$messages = [
+											'type' => 'text',
+											'text' => 'คุณยังไม่ได้ลงทะเบียน จึงยังไม่สามารถสอบถามข้อมูลได้ เพื่อการตอบคำถามที่ถูกต้องกรุณาลงทะเบียนก่อน โดยพิมพ์ข้อความ "ลงทะเบียน-รหัสพนักงาน" ส่งมาที่ผมเพื่อลงทะเบียนครับ ตัวอย่างเช่น ลงทะเบียน-7100000'
+										];
+						}
 						replyToUser($replyToken,$messages,$access_token);
 					}
 					
