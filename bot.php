@@ -216,7 +216,8 @@ if (!is_null($events['events'])) {
 				// Build message to reply back
 					$messages = [
 						'type' => 'text',
-						'text' => "Respond :" . $text
+						//'text' => "Respond :" . $text
+						'text' => "Respond :" . $content
 					];
 				
 				replyToUser($replyToken,$messages,$access_token);
