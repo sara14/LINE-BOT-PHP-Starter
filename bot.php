@@ -27,10 +27,10 @@ function isRegistered($userId){
 function isPendingRegister($userId){
 	
 	try {
-		$result = true;
+		$result = false;
 		$oConn = new PDO('mysql:host='. $GLOBALS['sHost'] .';dbname='. $GLOBALS['sDb'] .';charset=utf8', $GLOBALS['sUsername'], $GLOBALS['sPassword']);
 		$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$oStmt = $oConn->prepare('SELECT * FROM heroku_c567de8b5a4ca4f.query_table WHERE Requester ="' . $userId . '"');
+		$oStmt = $oConn->prepare('SELECT userid FROM heroku_c567de8b5a4ca4f.query_table WHERE Requester ="' . $userId . '"');
 		$oStmt->execute();
 		$oResult = $oStmt->fetchAll();
 		foreach ($oResult as $aRow) {
