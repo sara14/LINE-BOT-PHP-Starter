@@ -27,7 +27,7 @@ function isRegistered($userId){
 function isPendingRegister($userId){
 	
 	try {
-		$result = false;
+		$result = true;
 		$oConn = new PDO('mysql:host='. $GLOBALS['sHost'] .';dbname='. $GLOBALS['sDb'] .';charset=utf8', $GLOBALS['sUsername'], $GLOBALS['sPassword']);
 		$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$oStmt = $oConn->prepare('SELECT * FROM heroku_c567de8b5a4ca4f.query_table WHERE Requester ="' . $userId . '"');
@@ -220,7 +220,7 @@ if (!is_null($events['events'])) {
 						}
 						
 					}else{
-						if(isPendingRegister($userId)==True){
+						if(isPendingRegister($userId)==1){
 							$messages = [
 											'type' => 'text',
 											'text' => 'คุณได้ส่งคำร้องลงทะเบียนไปแล้ว แต่ยังไม่ได้รับการอนุมัติ อาจใช้เวลาสักครู่เพื่อรอการตรวจสอบครับ'
@@ -256,4 +256,4 @@ if (!is_null($events['events'])) {
 		}
 	
 }
-echo "OK";
+echo "OK1";
