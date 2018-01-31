@@ -66,6 +66,27 @@ function replyToUser($reToken,$message,$ac_token){
 	curl_close($ch);
 	//echo $result . "\r\n";
 }
+function pushToUser($userID,$message,$ac_token){
+	
+	// Make a POST Request to Messaging API to reply to sender
+	$url = 'https://api.line.me/v2/bot/message/push';
+	$data = [
+		'to' => $userID,
+		'messages' => [$message]
+	];
+	$post = json_encode($data);
+	$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $ac_token);
+
+	$ch = curl_init($url);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	$result = curl_exec($ch);
+	curl_close($ch);
+	//echo $result . "\r\n";
+}
 
 $access_token = 'Mq2pK5XVmM83DUMUh/55lt5oFCV2PzEpGV3qoG7tr/2B6MXhmOtjVwPXyfhgH27GrC8nysA0Po3KH+b+ImCfK9fg+xwPFTuLCauttOjLE47vlGSxItWqNJXLUS0xjkUnXXjblop8wg1wOocI6ezgQAdB04t89/1O/w1cDnyilFU=';
 
@@ -197,16 +218,44 @@ if (!is_null($events['events'])) {
 					if (strpos($text, 'ลงทะเบียน-') !== false) {
 						
 						try {
-							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
-							$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-							$oStmt = $oConn->prepare('INSERT INTO heroku_c567de8b5a4ca4f.query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())');
-							$oStmt->execute();
-							$oConn=null;
-							$messages = [
-										'type' => 'text',
-										'text' => 'คำร้องขอลงทะเบียนของคุณถูกส่งไปที่ผู้ดูแลระบบแล้ว ซึ่งอาจจะใช้เวลาสักระยะเพื่อรอการอนุมัติ ทันทีที่คำขอของคุณได้รับการอนุมัติผมจะแจ้งให้ทราบทันทีครับ'
+							if(isPendingRegister($userId)==1){
+							
+							}else{
+								$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
+								$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+								$oStmt = $oConn->prepare('INSERT INTO heroku_c567de8b5a4ca4f.query_table VALUES("' . $replyToken . '","' . $text . '","' . $userId . '",Now())');
+								$oStmt->execute();
+								$oConn=null;
+								$messages = [
+											'type' => 'text',
+											'text' => 'คำร้องขอลงทะเบียนของคุณถูกส่งไปที่ผู้ดูแลระบบแล้ว ซึ่งอาจจะใช้เวลาสักระยะเพื่อรอการอนุมัติ ทันทีที่คำขอของคุณได้รับการอนุมัติผมจะแจ้งให้ทราบทันทีครับ'
+										];
+										
+								$adminMessages = [
+									  'type' => 'template',
+									  'altText' => 'this is a buttons template',
+									  'template' => [
+										  'type' => 'buttons',
+										  'thumbnailImageUrl' => 'https://blog.prepscholar.com/hs-fs/hubfs/main_register.jpg',
+										  'title' => 'คำร้องขอลงทะเบียน',
+										  'text' => 'มีคำขอ' . $text . 'ต้องการอนุมัติหรือไม่',
+										  'actions' => [
+											  [
+												'type' => 'postback',
+												'label'=> 'อนุมัติ',
+												'data' => 'action=addmember&itemid=' . $userId
+											  ],
+											  [
+												'type' => 'postback',
+												'label' => 'ไม่อนุมัติ',
+												'data' => 'action=rejectmember&itemid=' . $userId
+											  ]
+										  ]
+									  ]
 									];
+							}
 							replyToUser($replyToken,$messages,$access_token);
+							pushToUser('U043c1dbc5506079b0b11d3f402aea555',$adminMessages,$access_token);
 							
 						} catch(PDOException $e) {
 							$err = $e->getMessage();
