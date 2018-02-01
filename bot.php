@@ -289,6 +289,7 @@ if (!is_null($events['events'])) {
 				if (strpos($text, 'action=addmember') !== false) {
 					$postback = explode("&", $text);
 					$targetUserID = explode("=",$postback[1])[1];
+					$reqID = explode("=",$postback[2])[1];
 					if(isPendingRegister($targetUserID)==1){
 						try{
 						
