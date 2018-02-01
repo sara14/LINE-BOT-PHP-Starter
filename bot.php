@@ -311,6 +311,7 @@ if (!is_null($events['events'])) {
 											'text' => 'error' . $err
 										];
 								//replyToUser($replyToken,$messages,$access_token);
+						}
 					}else{
 						$messages = [
 							'type' => 'text',
