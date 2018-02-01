@@ -309,6 +309,7 @@ if (!is_null($events['events'])) {
 						'type' => 'text',
 						//'text' => "Respond :" . $text
 						'text' => "คำร้องนี้ถูกจัดการไปแล้ว" . $targetUserID
+					];
 					}
 					
 					replyToUser($replyToken,$messages,$access_token);
