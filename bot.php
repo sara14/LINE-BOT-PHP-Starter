@@ -294,8 +294,8 @@ if (!is_null($events['events'])) {
 						
 							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
 							$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-							$oStmt = $oConn->prepare('INSERT INTO heroku_c567de8b5a4ca4f.user_list VALUES("' . $targetUserID . '",Now())');
-							$oStmt->execute();
+							//$oStmt = $oConn->prepare('INSERT INTO heroku_c567de8b5a4ca4f.user_list VALUES("' . $targetUserID . '",Now())');
+							//$oStmt->execute();
 							$oStmt = $oConn->prepare('DELETE FROM heroku_c567de8b5a4ca4f.query_table WHERE ReqID = "' . $reqID . '"');
 							$oStmt->execute();
 							$oConn=null;
