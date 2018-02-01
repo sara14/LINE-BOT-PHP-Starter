@@ -296,11 +296,21 @@ if (!is_null($events['events'])) {
 					];
 					replyToUser($replyToken,$messages,$access_token);
 				}else if (strpos($text, 'action=rejectmember') !== false) {
-					$messages = [
+					$postback = explode("&", $text);
+					$targetUserID = explode("=",$postback[1])[1];
+					if(isPendingRegister($targetUserID)==1){
+						$messages = [
 						'type' => 'text',
 						//'text' => "Respond :" . $text
-						'text' => "ทำการปฎิเสธการลงทะเบียนของผู้ใช้เรียบร้อยแล้ว"
+						'text' => "ทำการปฎิเสธการลงทะเบียนของผู้ใช้เรียบร้อยแล้ว" . $targetUserID
 					];
+					}else{
+						$messages = [
+						'type' => 'text',
+						//'text' => "Respond :" . $text
+						'text' => "คำร้องนี้ถูกจัดการไปแล้ว" . $targetUserID
+					}
+					
 					replyToUser($replyToken,$messages,$access_token);
 				}
 				
