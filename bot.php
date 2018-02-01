@@ -308,10 +308,25 @@ if (!is_null($events['events'])) {
 					$postback = explode("&", $text);
 					$targetUserID = explode("=",$postback[1])[1];
 					if(isPendingRegister($targetUserID)==1){
-						$messages = [
-						'type' => 'text',
-						'text' => "ทำการปฎิเสธการลงทะเบียนของผู้ใช้เรียบร้อยแล้ว" . $targetUserID
-					];
+						try{
+							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
+							$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							$oStmt = $oConn->prepare('DELETE heroku_c567de8b5a4ca4f.query_table WHERE Requester = "' . $targetUserID . '"');
+							$oStmt->execute();
+							$oConn=null;
+							$messages = [
+								'type' => 'text',
+								'text' => "ทำการปฎิเสธการลงทะเบียนของผู้ใช้เรียบร้อยแล้ว" . $targetUserID
+							];
+						} catch(PDOException $e) {
+							$err = $e->getMessage();
+							$messages = [
+										'type' => 'text',
+										'text' => 'error' . $err
+									];
+							//replyToUser($replyToken,$messages,$access_token);
+						}
+						
 					}else{
 						$messages = [
 						'type' => 'text',
