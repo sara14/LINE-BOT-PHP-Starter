@@ -243,12 +243,12 @@ if (!is_null($events['events'])) {
 											  [
 												'type' => 'postback',
 												'label'=> 'อนุมัติ',
-												'data' => 'action=addmember&itemid=' . $userId
+												'data' => 'action=addmember&itemid=' . $userId . '&reqid=' . $replyToken
 											  ],
 											  [
 												'type' => 'postback',
 												'label' => 'ไม่อนุมัติ',
-												'data' => 'action=rejectmember&itemid=' . $userId
+												'data' => 'action=rejectmember&itemid=' . $userId . '&reqid=' . $replyToken
 											  ]
 										  ]
 									  ]
@@ -307,11 +307,12 @@ if (!is_null($events['events'])) {
 				}else if (strpos($text, 'action=rejectmember') !== false) {
 					$postback = explode("&", $text);
 					$targetUserID = explode("=",$postback[1])[1];
+					$reqID = explode("=",$postback[2])[1];
 					if(isPendingRegister($targetUserID)==1){
 						try{
 							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
 							$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-							$oStmt = $oConn->prepare('DELETE heroku_c567de8b5a4ca4f.query_table WHERE Requester = "' . $targetUserID . '"');
+							$oStmt = $oConn->prepare('DELETE heroku_c567de8b5a4ca4f.query_table WHERE ReqID = "' . $reqID . '"');
 							$oStmt->execute();
 							$oConn=null;
 							$messages = [
