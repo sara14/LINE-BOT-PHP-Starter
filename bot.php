@@ -209,7 +209,7 @@ if (!is_null($events['events'])) {
 					}else{
 						$messages = [
 							'type' => 'text',
-							'text' => 'ตอนนี้ผมกำลังเริ่มเรียนรู้เลยไม่สามารถตอบคำถามนี้ได้ ลองคำถามอื่นๆดูซิครับ'
+							'text' => 'ขออภัยครับผมไม่สามารถตอบคำถามนี้ได้ในตอนนี้ อย่างไรก็ดีคำถามของคุณจะถูกส่งไปให้ HR Admin และเมื่อมีการตอบกลับ ผมจะแจ้งให้ทราบทันทีครับ'
 						];
 					}
 					
@@ -286,13 +286,25 @@ if (!is_null($events['events'])) {
 				$text = $event['type'] . $event['postback']['data'];
 				$replyToken = $event['replyToken'];
 				$userId = $event['source']['userId'];
-				$messages = [
+				if (strpos($text, 'action=addmember') !== false) {
+					$postback = explode("&", $text);
+					$targetUserID = explode("=",$postback[1])[1];
+					$messages = [
 						'type' => 'text',
 						//'text' => "Respond :" . $text
 						'text' => "ทำการเพิ่มผู้ใช้ใหม่เรียบร้อยแล้ว"
 					];
+					replyToUser($replyToken,$messages,$access_token);
+				}else if (strpos($text, 'action=addmember') !== false) {
+					$messages = [
+						'type' => 'text',
+						//'text' => "Respond :" . $text
+						'text' => "ทำการปฎิเสธการลงทะเบียนของผู้ใช้เรียบร้อยแล้ว"
+					];
+					replyToUser($replyToken,$messages,$access_token);
+				}
 				
-				replyToUser($replyToken,$messages,$access_token);
+				
 			}else{
 				// Get type sent
 				$text = $event['type'] . $event['postback']['data'];
