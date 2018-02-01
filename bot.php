@@ -312,7 +312,7 @@ if (!is_null($events['events'])) {
 						try{
 							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
 							$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-							$oStmt = $oConn->prepare('DELETE heroku_c567de8b5a4ca4f.query_table WHERE ReqID = "' . $reqID . '"');
+							$oStmt = $oConn->prepare('DELETE FROM heroku_c567de8b5a4ca4f.query_table WHERE ReqID = "' . $reqID . '"');
 							$oStmt->execute();
 							$oConn=null;
 							$messages = [
