@@ -343,6 +343,11 @@ if (!is_null($events['events'])) {
 								'type' => 'text',
 								'text' => "ทำการปฎิเสธการลงทะเบียนของผู้ใช้เรียบร้อยแล้ว" . $targetUserID
 							];
+							$replymessages = [
+								'type' => 'text',
+								'text' => "คำร้องขอลงทะเบียนของคุณถูกปฎิเสธ กรุณาตรวจสอบข้อมูลของคุณ และลงทะเบียนอีกครั้งครับ"
+							];
+							pushToUser($targetUserID,$replymessages,$access_token);
 						} catch(PDOException $e) {
 							$err = $e->getMessage();
 							$messages = [
