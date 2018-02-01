@@ -289,26 +289,33 @@ if (!is_null($events['events'])) {
 				if (strpos($text, 'action=addmember') !== false) {
 					$postback = explode("&", $text);
 					$targetUserID = explode("=",$postback[1])[1];
-					$messages = [
-						'type' => 'text',
-						//'text' => "Respond :" . $text
-						'text' => "ทำการเพิ่มผู้ใช้ใหม่เรียบร้อยแล้ว"
-					];
-					replyToUser($replyToken,$messages,$access_token);
+					try{
+						$messages = [
+							'type' => 'text',
+							'text' => "ทำการเพิ่มผู้ใช้ใหม่เรียบร้อยแล้ว"
+						];
+						replyToUser($replyToken,$messages,$access_token);
+					} catch(PDOException $e) {
+							$err = $e->getMessage();
+							$messages = [
+										'type' => 'text',
+										'text' => 'error' . $err
+									];
+							replyToUser($replyToken,$messages,$access_token);
+					}
+					
 				}else if (strpos($text, 'action=rejectmember') !== false) {
 					$postback = explode("&", $text);
 					$targetUserID = explode("=",$postback[1])[1];
 					if(isPendingRegister($targetUserID)==1){
 						$messages = [
 						'type' => 'text',
-						//'text' => "Respond :" . $text
 						'text' => "ทำการปฎิเสธการลงทะเบียนของผู้ใช้เรียบร้อยแล้ว" . $targetUserID
 					];
 					}else{
 						$messages = [
 						'type' => 'text',
-						//'text' => "Respond :" . $text
-						'text' => "คำร้องนี้ถูกจัดการไปแล้ว" . $targetUserID
+						'text' => "คำร้องนี้ถูกจัดการไปแล้ว"
 					];
 					}
 					
