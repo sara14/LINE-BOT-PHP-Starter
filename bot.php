@@ -295,7 +295,7 @@ if (!is_null($events['events'])) {
 						'text' => "ทำการเพิ่มผู้ใช้ใหม่เรียบร้อยแล้ว"
 					];
 					replyToUser($replyToken,$messages,$access_token);
-				}else if (strpos($text, 'action=addmember') !== false) {
+				}else if (strpos($text, 'action=rejectmember') !== false) {
 					$messages = [
 						'type' => 'text',
 						//'text' => "Respond :" . $text
