@@ -282,6 +282,17 @@ if (!is_null($events['events'])) {
 					}
 					
 				}
+			}else if ($event['type'] == 'postback') {
+				$text = $event['type'] . $event['postback']['data'];
+				$replyToken = $event['replyToken'];
+				$userId = $event['source']['userId'];
+				$messages = [
+						'type' => 'text',
+						//'text' => "Respond :" . $text
+						'text' => "ทำการเพิ่มผู้ใช้ใหม่เรียบร้อยแล้ว"
+					];
+				
+				replyToUser($replyToken,$messages,$access_token);
 			}else{
 				// Get type sent
 				$text = $event['type'] . $event['postback']['data'];
