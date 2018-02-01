@@ -308,7 +308,11 @@ if (!is_null($events['events'])) {
 								'type' => 'text',
 								'text' => "ทำการเพิ่มผู้ใช้ใหม่เรียบร้อยแล้ว"
 							];
-							
+							$replymessages = [
+								'type' => 'text',
+								'text' => "คำร้องขอลงทะเบียนได้รับการอนุมัติจาก HR Admin แล้วครับ มาเริ่มคุยกันดีกว่า"
+							];
+							pushToUser($targetUserID,$replymessages,$access_token);
 						} catch(PDOException $e) {
 								$err = $e->getMessage();
 								$messages = [
