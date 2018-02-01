@@ -289,21 +289,35 @@ if (!is_null($events['events'])) {
 				if (strpos($text, 'action=addmember') !== false) {
 					$postback = explode("&", $text);
 					$targetUserID = explode("=",$postback[1])[1];
-					try{
+					if(isPendingRegister($targetUserID)==1){
+						try{
+						
+							$oConn = new PDO('mysql:host='.$sHost.';dbname='.$sDb.';charset=utf8', $sUsername, $sPassword);
+							$oConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							$oStmt = $oConn->prepare('INSERT INTO heroku_c567de8b5a4ca4f.user_list VALUES("' . $targetUserID . '",Now())');
+							$oStmt->execute();
+							$oStmt = $oConn->prepare('DELETE FROM heroku_c567de8b5a4ca4f.query_table WHERE ReqID = "' . $reqID . '"');
+							$oStmt->execute();
+							$oConn=null;
+							$messages = [
+								'type' => 'text',
+								'text' => "ทำการเพิ่มผู้ใช้ใหม่เรียบร้อยแล้ว"
+							];
+							
+						} catch(PDOException $e) {
+								$err = $e->getMessage();
+								$messages = [
+											'type' => 'text',
+											'text' => 'error' . $err
+										];
+								//replyToUser($replyToken,$messages,$access_token);
+					}else{
 						$messages = [
 							'type' => 'text',
-							'text' => "ทำการเพิ่มผู้ใช้ใหม่เรียบร้อยแล้ว"
+							'text' => "คำร้องนี้ถูกจัดการไปแล้ว"
 						];
-						replyToUser($replyToken,$messages,$access_token);
-					} catch(PDOException $e) {
-							$err = $e->getMessage();
-							$messages = [
-										'type' => 'text',
-										'text' => 'error' . $err
-									];
-							replyToUser($replyToken,$messages,$access_token);
 					}
-					
+					replyToUser($replyToken,$messages,$access_token);
 				}else if (strpos($text, 'action=rejectmember') !== false) {
 					$postback = explode("&", $text);
 					$targetUserID = explode("=",$postback[1])[1];
